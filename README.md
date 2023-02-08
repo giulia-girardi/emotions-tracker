@@ -1,2 +1,4 @@
 # emotions-tracker
-Let's have fun! 
+
+Let's have fun!
+Hello!
