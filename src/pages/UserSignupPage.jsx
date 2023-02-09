@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import {UserAuthContext} from '../contexts/user.auth.context'
 
 function UserSignupPage() {
   const [firstName, setFirstName] = useState('')
@@ -8,6 +9,8 @@ function UserSignupPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  
+  const { storeToken, setIsLoggedIn, authenticateUser} = useContext(UserAuthContext)
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -31,12 +34,18 @@ function UserSignupPage() {
       })
 
       const parsedLogin = await loginResponse.json();
-      //storeToken(parsedLogin.authToken)
+      storeToken(parsedLogin.authToken)
+
+      if (response.status === 201) {
+        setIsLoggedIn(true)
+        authenticateUser()
+      } else {
+        setErrorMessage(parsed.message)
+      }
 
     } catch (error) {
       setErrorMessage(error.message)
     }
-
   }
 
   return (
