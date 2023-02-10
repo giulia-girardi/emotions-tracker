@@ -6,6 +6,7 @@ import UserLoginPage from "./pages/UserLoginPage";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
+import IsPrivate from "./components/IsPrivate";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<UserSignupPage />} />
         <Route path="/login" element={<UserLoginPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<IsPrivate><Dashboard /></IsPrivate>} />
       </Routes>
     </div>
   );
