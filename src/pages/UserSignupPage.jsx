@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import {UserAuthContext} from '../contexts/user.auth.context'
 
@@ -11,6 +11,7 @@ function UserSignupPage() {
   const [errorMessage, setErrorMessage] = useState('')
   
   const { storeToken, setIsLoggedIn, authenticateUser} = useContext(UserAuthContext)
+  const navigate = useNavigate();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -39,6 +40,7 @@ function UserSignupPage() {
       if (response.status === 201) {
         setIsLoggedIn(true)
         authenticateUser()
+        navigate('/dashboard')
       } else {
         setErrorMessage(parsed.message)
       }
