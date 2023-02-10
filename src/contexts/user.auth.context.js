@@ -7,14 +7,14 @@ function UserAuthProviderWrapper(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [user, setUser] = useState(null)
-
+    
     const storeToken = (token) => {
         localStorage.setItem('userAuthToken', token)
     }
     
-    const storedToken = localStorage.getItem('userAuthToken')
-
     const authenticateUser = async() => {
+        const storedToken = localStorage.getItem('userAuthToken')
+
         if (storedToken) {
             const response = await fetch('http://localhost:5005/verify', {
                 headers: {
@@ -44,6 +44,8 @@ function UserAuthProviderWrapper(props) {
     useEffect(() => {
         authenticateUser()
     }, [])
+
+
     
 
     return(
@@ -52,7 +54,6 @@ function UserAuthProviderWrapper(props) {
             isLoading, 
             user, 
             storeToken, 
-            storedToken, 
             authenticateUser, 
             setIsLoggedIn, 
             logoutUser

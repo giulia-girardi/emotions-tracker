@@ -40,6 +40,7 @@ function UserSignupPage() {
       if (response.status === 201) {
         setIsLoggedIn(true)
         authenticateUser()
+        console.log('verify')
         navigate('/dashboard')
       } else {
         setErrorMessage(parsed.message)
