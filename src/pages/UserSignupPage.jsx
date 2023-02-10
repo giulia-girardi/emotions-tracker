@@ -80,7 +80,7 @@ function UserSignupPage() {
           value={password}
           onChange={event => setPassword(event.target.value)}
         />
-        <button type='submit'>Login</button>
+        <button type='submit'>Signup</button>
         <p>Already have an account? <Link to='/login'>Login</Link></p>
       </form>
       {errorMessage && <p>{errorMessage}</p>}
