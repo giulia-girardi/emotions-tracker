@@ -42,7 +42,7 @@ function LogEmotionsModal(props) {
         <h2>Log your emotions</h2>
         <div className='log-emotions-body'>
             <form onSubmit={handleSubmit}>
-            <label for="minmax-range" className="block mb-2 text-sm font-medium text-gray-900">Sadness</label>
+            <label  className="block mb-2 text-sm font-medium text-gray-900">Sadness</label>
             <input 
                 id="minmax-range" 
                 type="range" 
@@ -52,7 +52,7 @@ function LogEmotionsModal(props) {
                 onChange={event => setSadness(event.target.value)}
                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
             />
-            <label for="minmax-range" className="block mb-2 text-sm font-medium text-gray-900">Anxiety</label>
+            <label className="block mb-2 text-sm font-medium text-gray-900">Anxiety</label>
             <input 
                 id="minmax-range" 
                 type="range" 
