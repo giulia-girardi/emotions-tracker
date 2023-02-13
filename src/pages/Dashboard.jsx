@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import EmotionsTable from "../components/EmotionsTable";
+import LogEmotionsModal from "../components/LogEmotionsModal";
 import { UserAuthContext } from "../contexts/user.auth.context";
 
 function Dashboard() {
   const { user } = useContext(UserAuthContext);
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <>
@@ -16,7 +18,8 @@ function Dashboard() {
             {" "}
             <EmotionsTable />
           </div>
-        
+        <button onClick={() => setShowModal(true)} >Log emotions</button>
+        <LogEmotionsModal showModal={showModal} setShowModal={setShowModal}/>
         </div>
       )}
     </>
