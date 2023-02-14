@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { UserAuthProviderWrapper } from './contexts/user.auth.context';
 import { MantineProvider } from '@mantine/core';
+//import 'tw-elements';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

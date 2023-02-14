@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Fragment } from "react";
 import EmotionsTable from "../components/EmotionsTable";
 import LogEmotionsModal from "../components/LogEmotionsModal";
 import { UserAuthContext } from "../contexts/user.auth.context";
@@ -11,6 +12,9 @@ function Dashboard() {
 
   return (
     <>
+    
+
+    
       {user && (
         <div className="flex flex-col items-center">
           <h1 className=" text-dark-green  font-roboto text-6xl pb-10">
@@ -32,9 +36,11 @@ function Dashboard() {
             <EmotionsTable width="50px" />
           </div>
         <button onClick={() => setShowModal(true)} >Log emotions</button>
+      
         <LogEmotionsModal showModal={showModal} setShowModal={setShowModal}/>
         </div>
       )}
+      
     </>
   );
 }

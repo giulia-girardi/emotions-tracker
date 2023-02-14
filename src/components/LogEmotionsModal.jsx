@@ -36,106 +36,89 @@ function LogEmotionsModal(props) {
         
     }
   return (
-    <div>
-        <h2>Log your emotions</h2>
-        <div className='log-emotions-body'>
-            <form onSubmit={handleSubmit}>
-{/*             <Slider 
-                value={sadness}
-                min={0}
-                max={10}
-                default={5}
-                step={1}
-                onChangeEnd={setSadness}
-                marks={[
-                    { value: 1, label: '1' },
-                    { value: 2, label: '2' },
-                    { value: 3, label: '3' },
-                    { value: 4, label: '4' },
-                    { value: 5, label: '5' },
-                    { value: 6, label: '6' },
-                    { value: 7, label: '7' },
-                    { value: 8, label: '8' },
-                    { value: 9, label: '9' },
-                    { value: 10, label: '10' },
-                ]}
-            /> */}
-            {/* <Slider 
-                value={anxiety}
-                min={0}
-                max={10}
-                default={5}
-                step={1}
-                onChangeEnd={setAnxiety}
-                marks={[
-                    { value: 1, label: '1' },
-                    { value: 2, label: '2' },
-                    { value: 3, label: '3' },
-                    { value: 4, label: '4' },
-                    { value: 5, label: '5' },
-                    { value: 6, label: '6' },
-                    { value: 7, label: '7' },
-                    { value: 8, label: '8' },
-                    { value: 9, label: '9' },
-                    { value: 10, label: '10' },
-                ]}
-            /> */}
-            {/* <Slider 
-                value={anger}
-                min={0}
-                max={10}
-                default={5}
-                step={1}
-                onChangeEnd={setAnger}
-                marks={[
-                    { value: 1, label: '1' },
-                    { value: 2, label: '2' },
-                    { value: 3, label: '3' },
-                    { value: 4, label: '4' },
-                    { value: 5, label: '5' },
-                    { value: 6, label: '6' },
-                    { value: 7, label: '7' },
-                    { value: 8, label: '8' },
-                    { value: 9, label: '9' },
-                    { value: 10, label: '10' },
-                ]}
-            /> */}
-            <label  className="block mb-2 text-sm font-medium text-gray-900">Sadness</label>
-            <input 
-                id="minmax-range" 
-                type="range" 
-                min="0" 
-                max="10" 
-                value={sadness} 
-                onChange={event => setSadness(event.target.value)}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-            />
-            <label className="block mb-2 text-sm font-medium text-gray-900">Anxiety</label>
-            <input 
-                id="minmax-range" 
-                type="range" 
-                min="0" 
-                max="10" 
-                value={anxiety} 
-                onChange={event => setAnxiety(event.target.value)}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-            />
-            <label className="block mb-2 text-sm font-medium text-gray-900">Anger</label>
-            <input 
-                id="minmax-range" 
-                type="range" 
-                min="0" 
-                max="10" 
-                value={anger}
-                onChange={event => setAnger(event.target.value)}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-            />
-            <button type='submit'>Submit</button>
-            </form>
-            {errorMessage && <p>{errorMessage}</p>}
+    <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
+        <div className='w-[600px]'>
+            <div className='bg-white p-2 rounded'>
+                <h2>Log your emotions</h2>
+                <div className='log-emotions-body'>
+                    <form onSubmit={handleSubmit}>
+                    <div class="mx-0 w-100">
+                    <div class="text-center">
+                        <p>
+                        <strong>Sadness</strong>
+                        </p>
+                    </div>
+                    <label for="customRange3" class="form-label float-start">Emoji</label>
+                    <label for="customRange3" class="form-label float-end">Emoji</label>
+                    <div class="range">
+                        <input 
+                            type="range" 
+                            className="form-range" 
+                            min="0" 
+                            max="10" 
+                            step="1" 
+                            id="customRange3"
+                            value={sadness} 
+                            onChange={event => setSadness(event.target.value)}
+                        />
+                    </div>
+                    <div class="text-center">
+                        <p>
+                        <strong>Anxiety</strong>
+                        </p>
+                    </div>
+                    <label for="customRange3" class="form-label float-start">Emoji</label>
+                    <label for="customRange3" class="form-label float-end">Emoji</label>
+                    <div class="range">
+                        <input 
+                            type="range" 
+                            className="form-range" 
+                            min="0" 
+                            max="10" 
+                            step="1" 
+                            id="customRange3"
+                            value={anxiety} 
+                            onChange={event => setAnxiety(event.target.value)}
+                        />
+                    </div>
+                    <div class="text-center">
+                        <p>
+                        <strong>Anger</strong>
+                        </p>
+                    </div>
+                    <label for="customRange3" class="form-label float-start">Emoji</label>
+                    <label for="customRange3" class="form-label float-end">Emoji</label>
+                    <div class="range">
+                        <input 
+                            type="range" 
+                            className="form-range" 
+                            min="0" 
+                            max="10" 
+                            step="1" 
+                            id="customRange3"
+                            value={anger} 
+                            onChange={event => setAnger(event.target.value)}
+                        />
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                    </div>
+                    </form>
+                    {errorMessage && <p>{errorMessage}</p>}
+                </div>
+            </div>
+            
         </div>
+        
     </div>
   )
 }
 
 export default LogEmotionsModal
+
+
+
+
+
+
