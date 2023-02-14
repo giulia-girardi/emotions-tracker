@@ -6,11 +6,8 @@ import UserLoginPage from "./pages/UserLoginPage";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
-<<<<<<< Updated upstream
 import IsPrivate from "./components/IsPrivate";
-=======
 import Footer from "./components/Footer";
->>>>>>> Stashed changes
 
 function App() {
   return (
@@ -20,9 +17,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<UserSignupPage />} />
         <Route path="/login" element={<UserLoginPage />} />
-        <Route path="/dashboard" element={<IsPrivate><Dashboard /></IsPrivate>} />
+        <Route
+          path="/dashboard"
+          element={
+            <IsPrivate>
+              <Dashboard />
+            </IsPrivate>
+          }
+        />
       </Routes>
-      <div className="absolute w-full h-10 bottom-0 bg-light-gray">
+      <div className="absolute w-full h-10 bottom-0 bg-light-gray flex justify-end items-center">
         <Footer />
       </div>
     </div>

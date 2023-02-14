@@ -5,8 +5,10 @@ function Footer() {
   return (
     <div>
       {" "}
-      <div>
-        <CgProfile />
+      <div className="">
+        <button className="text-3xl text-dark-green ">
+          <CgProfile />
+        </button>
       </div>
     </div>
   );

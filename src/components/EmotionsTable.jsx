@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserAuthContext } from "../contexts/user.auth.context";
 
 function EmotionsTable() {
+  const { user } = useContext(UserAuthContext);
+  const currentUser = user.user;
+  const today = new Date().toJSON().slice(0, 10);
+
+  const value = currentUser.emotions.filter((emotion) => {
+    if (emotion.date === today) {
+      return emotion;
+    } else {
+      return null;
+    }
+  });
+
+  console.log(value);
+
   return (
     <div className="flex p-2 items-center justify-center">
       <table className="table-auto text-xl ">
@@ -20,7 +35,7 @@ function EmotionsTable() {
             <td>8</td>
             <td>8</td>
             <td>
-              <a href="#"> Link</a>
+              <a href="*"> Link</a>
             </td>
           </tr>
           <tr>
@@ -29,7 +44,7 @@ function EmotionsTable() {
             <td>5</td>
             <td>5</td>
             <td>
-              <a href="#">Link</a>
+              <a href="*">Link</a>
             </td>
           </tr>
           <tr>
@@ -38,7 +53,7 @@ function EmotionsTable() {
             <td>5</td>
             <td>5</td>
             <td>
-              <a href="#">Link</a>
+              <a href="*">Link</a>
             </td>
           </tr>
         </tbody>

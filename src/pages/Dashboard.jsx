@@ -7,17 +7,18 @@ import { UserAuthContext } from "../contexts/user.auth.context";
 
 function Dashboard() {
   const { user } = useContext(UserAuthContext);
-  const [showModal, setShowModal] = useState(false)
+  const currentUser = user.user;
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       {user && (
         <div className="flex flex-col items-center">
-          <h1 className=" text-dark-green  font-roboto text-6xl pb-10">
+          <h1 className=" text-dark-green  font-roboto text-2xl md:text-6xl pt-3">
             Hello{" "}
             <strong className="">
-              {" "}
-              {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}
+              {currentUser.firstName.charAt(0).toUpperCase() +
+                currentUser.firstName.slice(1)}
             </strong>
             !
           </h1>
@@ -31,8 +32,8 @@ function Dashboard() {
             {" "}
             <EmotionsTable width="50px" />
           </div>
-        <button onClick={() => setShowModal(true)} >Log emotions</button>
-        <LogEmotionsModal showModal={showModal} setShowModal={setShowModal}/>
+          <button onClick={() => setShowModal(true)}>Log emotions</button>
+          <LogEmotionsModal showModal={showModal} setShowModal={setShowModal} />
         </div>
       )}
     </>
