@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Fragment } from "react";
 import EmotionsTable from "../components/EmotionsTable";
 import LogEmotionsModal from "../components/LogEmotionsModal";
 import { UserAuthContext } from "../contexts/user.auth.context";
@@ -33,6 +34,7 @@ function Dashboard() {
             <EmotionsTable width="50px" />
           </div>
           <button onClick={() => setShowModal(true)}>Log emotions</button>
+
           <LogEmotionsModal showModal={showModal} setShowModal={setShowModal} />
         </div>
       )}

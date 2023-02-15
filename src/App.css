@@ -1,9 +1,11 @@
+@import '~mdb-ui-kit/css/mdb.min.css';
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 100%;
   pointer-events: none;
 }
 
@@ -36,3 +38,4 @@
     transform: rotate(360deg);
   }
 }
+
