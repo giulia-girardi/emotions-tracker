@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import IsPrivate from "./components/IsPrivate";
 import Footer from "./components/Footer";
+import SadnessPage from "./pages/SadnessPage";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
           element={
             <IsPrivate>
               <Dashboard />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/sadness"
+          element={
+            <IsPrivate>
+              <SadnessPage />
             </IsPrivate>
           }
         />

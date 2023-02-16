@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserAuthContext } from "../contexts/user.auth.context";
 
 function EmotionsTable() {
@@ -35,7 +36,7 @@ function EmotionsTable() {
             <td>8</td>
             <td>8</td>
             <td>
-              <a href="*"> Link</a>
+              <Link to="/sadness">Link</Link>
             </td>
           </tr>
           <tr>
