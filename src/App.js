@@ -26,11 +26,7 @@ function App() {
           }
         />
       </Routes>
-<<<<<<< HEAD
-      <div className="absolute w-full h-10 bottom-0 bg-light-gray flex justify-end items-center">
-=======
       <div className="w-full h-10 bottom-0 bg-light-gray">
->>>>>>> 4a6d8b36ae10e1de9f9437931af796c74ca79a93
         <Footer />
       </div>
     </div>
