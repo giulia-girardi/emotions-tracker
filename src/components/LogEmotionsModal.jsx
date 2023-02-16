@@ -3,9 +3,9 @@ import { UserAuthContext } from "../contexts/user.auth.context";
 import { Slider } from "@mantine/core";
 
 function LogEmotionsModal(props) {
-  const [sadness, setSadness] = useState("");
-  const [anxiety, setAnxiety] = useState("");
-  const [anger, setAnger] = useState("");
+  const [sadness, setSadness] = useState(5);
+  const [anxiety, setAnxiety] = useState(5);
+  const [anger, setAnger] = useState(5);
   const [errorMessage, setErrorMessage] = useState("");
   const { user } = useContext(UserAuthContext);
 
@@ -27,6 +27,9 @@ function LogEmotionsModal(props) {
       const parsed = await response.json();
       if (response.status === 201) {
         props.setShowModal(false);
+        setAnger(5)
+        setAnxiety(5)
+        setSadness(5)
       } else {
         setErrorMessage(parsed.message);
       }
@@ -35,6 +38,10 @@ function LogEmotionsModal(props) {
     }
   };
 
+  const handleClose = () => {
+    props.setShowModal(false);
+  }
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <div className="w-[600px]">
@@ -42,18 +49,19 @@ function LogEmotionsModal(props) {
           <h2>Log your emotions</h2>
           <div className="log-emotions-body">
             <form onSubmit={handleSubmit}>
-              <div class="mx-0 w-100">
-                <div class="text-center">
+              <div className="mx-0 w-100">
+                <div className="text-center">
                   <p>
                     <strong>Sadness</strong>
                   </p>
                 </div>
-                <label for="customRange3" class="form-label float-start">
+                <label for="customRange3" className="form-label float-start">
                   Emoji
                 </label>
-                <label for="customRange3" class="form-label float-end">
+                <label for="customRange3" className="form-label float-end">
                   Emoji
                 </label>
+                
                 <div class="range">
                   <input
                     type="range"
@@ -113,6 +121,9 @@ function LogEmotionsModal(props) {
                   />
                 </div>
                 <div class="text-end">
+                    <button type="button" onClick={handleClose} class="btn btn-secondary mt-3">
+                    Close
+                  </button>
                   <button type="submit" class="btn btn-primary mt-3">
                     Submit
                   </button>
