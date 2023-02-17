@@ -4,6 +4,7 @@ import { UserAuthContext } from "../contexts/user.auth.context";
 function EmotionsTable() {
   const { user } = useContext(UserAuthContext);
   const currentUser = user.user;
+  console.log(currentUser.emotions)
   /* const todayDate = new Date().toJSON().slice(0, 10); */
   /* filter to get the emotions of the day */
   /* const todayValues = currentUser.emotions.filter((emotion) => {
