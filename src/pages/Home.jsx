@@ -1,3 +1,4 @@
+import { Button } from "@mantine/core";
 import React from "react";
 import logo from "../assets/logo.svg";
 
@@ -9,6 +10,7 @@ function Home() {
         <h1 className=" font-roboto font-thin p-5">
           Track your daily <span className="bg-pink"> emotions</span>!
         </h1>
+        <Button />
       </div>
     </div>
   );
