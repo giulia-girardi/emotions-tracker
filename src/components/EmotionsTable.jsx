@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserAuthContext } from "../contexts/user.auth.context";
 
-function EmotionsTable({fetchEmotionsLastWeek, emotions}) {
+function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
   const { user } = useContext(UserAuthContext);
-  const [emotions, setEmotions] = useState([]);
+  // const [emotions, setEmotions] = useState([]);
   console.log(emotions, "emtions");
   const currentUser = user.user;
   console.log(currentUser);
 
-  const fetchEmotionsLastWeek = async () => {
+  /* const fetchEmotionsLastWeek = async () => {
     try {
       const response = await fetch(
         `http://localhost:5005/${currentUser._id}/emotions/past-week`
@@ -24,7 +24,7 @@ function EmotionsTable({fetchEmotionsLastWeek, emotions}) {
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
   ///// Computing the average of each emotion of one day
 
@@ -33,17 +33,19 @@ function EmotionsTable({fetchEmotionsLastWeek, emotions}) {
     const today = new Date().toISOString().slice(0, 10);
     const todaywithoutHours = today + "T00:00:00.000Z";
 
-  const emotionsToday = arr.filter(element => element.date == todaywithoutHours)
-  if (emotionsToday.length > 0) {
-    emotionsToday.map(element => sum += element[emotion])
-    return Math.round(sum/emotionsToday.length)
-  } else {
-    return "--"
-  }
-} 
-console.log(emotions)
-const averageEmotionsOneWeek = (arr, emotion) => {
- /*  const emotionsByDate = {date: {
+    const emotionsToday = arr.filter(
+      (element) => element.date == todaywithoutHours
+    );
+    if (emotionsToday.length > 0) {
+      emotionsToday.map((element) => (sum += element[emotion]));
+      return Math.round(sum / emotionsToday.length);
+    } else {
+      return "--";
+    }
+  };
+  //console.log(emotions);
+  /* const averageEmotionsOneWeek = (arr, emotion) => {
+     const emotionsByDate = {date: {
     sadness: [],
     anxiety: [],
     anger: []
@@ -56,10 +58,7 @@ const averageEmotionsOneWeek = (arr, emotion) => {
     }
     //delete emotionsByDate['date']
   })
-  console.log('emotionsByDate', emotionsByDate) */
-  
-}
-
+  console.log('emotionsByDate', emotionsByDate)  }; */
 
   /* The Average Emotion from a Week */
 
@@ -127,10 +126,8 @@ const averageEmotionsOneWeek = (arr, emotion) => {
         <tbody>
           <tr className="gap-10">
             <td>Sadness</td>
-            <td>
-              {averageEmotions(emotions, 'sadness')}
-            </td>
-            <td>{averageEmotionsOneWeek(emotions, 'sadness')}</td>
+            <td>{averageEmotions(emotions, "sadness")}</td>
+            <td>{averageEmotionsWeek(emotions, "sadness")}</td>
 
             <td>
               <a href="*"> Link</a>
@@ -138,10 +135,8 @@ const averageEmotionsOneWeek = (arr, emotion) => {
           </tr>
           <tr>
             <td>Anxiety</td>
-            <td>
-              {averageEmotions(emotions, 'anxiety')}
-            </td>
-            <td>{averageEmotionsOneWeek(emotions, 'anxiety')}</td>
+            <td>{averageEmotions(emotions, "anxiety")}</td>
+            <td>{averageEmotionsWeek(emotions, "anxiety")}</td>
 
             <td>
               <a href="*">Link</a>
@@ -149,10 +144,8 @@ const averageEmotionsOneWeek = (arr, emotion) => {
           </tr>
           <tr>
             <td>Anger</td>
-            <td>
-              {averageEmotions(emotions, 'anger')}
-            </td>
-            <td>{averageEmotionsOneWeek(emotions, 'anger')}</td>
+            <td>{averageEmotions(emotions, "anger")}</td>
+            <td>{averageEmotionsWeek(emotions, "anger")}</td>
 
             <td>
               <a href="*">Link</a>
