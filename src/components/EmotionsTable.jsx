@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserAuthContext } from "../contexts/user.auth.context";
 
-function EmotionsTable() {
+function EmotionsTable({fetchEmotionsLastWeek, emotions}) {
   const { user } = useContext(UserAuthContext);
   const [emotions, setEmotions] = useState([]);
 
@@ -33,12 +33,33 @@ function EmotionsTable() {
     const today = new Date().toISOString().slice(0, 10);
     const todaywithoutHours = today + "T00:00:00.000Z";
 
-    const emotionsToday = arr.filter(
-      (element) => element.date == todaywithoutHours
-    );
-    emotionsToday.map((element) => (sum += element[emotion]));
-    return Math.round(sum / emotionsToday.length);
-  };
+  const emotionsToday = arr.filter(element => element.date == todaywithoutHours)
+  if (emotionsToday.length > 0) {
+    emotionsToday.map(element => sum += element[emotion])
+    return Math.round(sum/emotionsToday.length)
+  } else {
+    return "--"
+  }
+} 
+console.log(emotions)
+const averageEmotionsOneWeek = (arr, emotion) => {
+ /*  const emotionsByDate = {date: {
+    sadness: [],
+    anxiety: [],
+    anger: []
+  } }
+  arr.map(element => {
+    if (element.date in emotionsByDate) {
+      emotionsByDate[element.date]['sadness'].push(element['sadness'])
+    } else {
+      emotionsByDate[element.date] = emotionsByDate['date']
+    }
+    //delete emotionsByDate['date']
+  })
+  console.log('emotionsByDate', emotionsByDate) */
+  
+}
+
 
   useEffect(() => {
     fetchEmotionsLastWeek();
@@ -48,6 +69,7 @@ function EmotionsTable() {
   /// to check if it's needed
   /*   useEffect(() => {
     fetchEmotionsLastWeek()
+    console.log(emotions)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emotions]) */
 
@@ -66,8 +88,10 @@ function EmotionsTable() {
         <tbody>
           <tr className="gap-10">
             <td>Sadness</td>
-            <td>{averageEmotions(emotions, "sadness")}</td>
-            <td>8</td>
+            <td>
+              {averageEmotions(emotions, 'sadness')}
+            </td>
+            <td>{averageEmotionsOneWeek(emotions, 'sadness')}</td>
 
             <td>
               <a href="*"> Link</a>
@@ -75,8 +99,10 @@ function EmotionsTable() {
           </tr>
           <tr>
             <td>Anxiety</td>
-            <td>{averageEmotions(emotions, "anxiety")}</td>
-            <td>5</td>
+            <td>
+              {averageEmotions(emotions, 'anxiety')}
+            </td>
+            <td>{averageEmotionsOneWeek(emotions, 'anxiety')}</td>
 
             <td>
               <a href="*">Link</a>
@@ -84,8 +110,10 @@ function EmotionsTable() {
           </tr>
           <tr>
             <td>Anger</td>
-            <td>{averageEmotions(emotions, "anger")}</td>
-            <td>5</td>
+            <td>
+              {averageEmotions(emotions, 'anger')}
+            </td>
+            <td>{averageEmotionsOneWeek(emotions, 'anger')}</td>
 
             <td>
               <a href="*">Link</a>
