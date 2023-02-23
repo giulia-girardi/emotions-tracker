@@ -4,7 +4,7 @@ import { UserAuthContext } from "../contexts/user.auth.context";
 function EmotionsTable({fetchEmotionsLastWeek, emotions}) {
   const { user } = useContext(UserAuthContext);
   const [emotions, setEmotions] = useState([]);
-
+  console.log(emotions, "emtions");
   const currentUser = user.user;
   console.log(currentUser);
 
@@ -60,6 +60,45 @@ const averageEmotionsOneWeek = (arr, emotion) => {
   
 }
 
+
+  /* The Average Emotion from a Week */
+
+  // Initialize an empty object to store the average emotion values for each date
+
+  const averageEmotionsWeek = (arr, emotion) => {
+    const emotionAvg = {};
+    let total = 0;
+    let countDays = 0;
+
+    // Loop through the array and calculate the sum and count of emotion values for each date
+    arr.forEach((item) => {
+      const date = item.date.slice(0, 10);
+      if (!emotionAvg[date]) {
+        emotionAvg[date] = { sum: 0, count: 0 };
+      }
+      console.log(item.emotion);
+
+      emotionAvg[date].sum += item[emotion];
+      emotionAvg[date].count++;
+    });
+
+    // Calculate the average emotion value for each date and store it in the emotionAvg object
+    Object.keys(emotionAvg).forEach((date) => {
+      emotionAvg[date] = emotionAvg[date].sum / emotionAvg[date].count;
+      //countDays is  going to be the amount of days that we have emotions values in a week - Because sometimes people are not going to fill everyday
+      countDays++;
+      //total is going to sum every avg value from each day
+      total += emotionAvg[date];
+    });
+    console.log(emotionAvg, "anxietyAvg", arr);
+    // Return the average of the emotion  in a week or "x" days that have emotins in a week
+    return Math.round(total / countDays);
+  };
+
+  console.log(
+    averageEmotionsWeek(emotions, "anxiety"),
+    "anxiety from the week"
+  );
 
   useEffect(() => {
     fetchEmotionsLastWeek();
