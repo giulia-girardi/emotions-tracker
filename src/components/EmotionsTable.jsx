@@ -4,9 +4,9 @@ import { UserAuthContext } from "../contexts/user.auth.context";
 function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
   const { user } = useContext(UserAuthContext);
   // const [emotions, setEmotions] = useState([]);
-  console.log(emotions, "emtions");
+  //console.log(emotions, "emtions");
   const currentUser = user.user;
-  console.log(currentUser);
+  //console.log(currentUser);
 
   /* const fetchEmotionsLastWeek = async () => {
     try {
@@ -75,7 +75,6 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
       if (!emotionAvg[date]) {
         emotionAvg[date] = { sum: 0, count: 0 };
       }
-      console.log(item.emotion);
 
       emotionAvg[date].sum += item[emotion];
       emotionAvg[date].count++;
@@ -89,14 +88,16 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
       //total is going to sum every avg value from each day
       total += emotionAvg[date];
     });
-    console.log(emotionAvg, "anxietyAvg", arr);
+    console.log(emotionAvg, "emotionAvg", emotion);
+    //console.log(emotionAvg, "anxietyAvg", arr);
     // Return the average of the emotion  in a week or "x" days that have emotins in a week
     return Math.round(total / countDays);
   };
 
   console.log(
     averageEmotionsWeek(emotions, "anxiety"),
-    "anxiety from the week"
+    "anxiety from the week",
+    emotions
   );
 
   useEffect(() => {
