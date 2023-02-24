@@ -1,9 +1,19 @@
 import React from 'react'
 import { Tabs } from '@mantine/core';
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis';
+import { useLocation } from 'react-router-dom'
 
 
 function SadnessPage() {
+    const location = useLocation()
+    const { state } = useLocation()
+    console.log(state)
+
+    const data = [
+        {x: 1, y: 10},
+        {x: 2, y: 5},
+        {x: 3, y: 15}
+      ]
     
   return (
     <Tabs variant="outline" defaultValue="1w">

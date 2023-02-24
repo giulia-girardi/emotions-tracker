@@ -21,7 +21,7 @@ function UserAuthProviderWrapper(props) {
         },
       });
       const parsed = await response.json();
-      console.log(parsed);
+
       setIsLoggedIn(true);
       setIsLoading(false);
       setUser(parsed);

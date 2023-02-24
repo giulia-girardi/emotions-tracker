@@ -14,6 +14,7 @@ module.exports = {
         orange: "#fe5800",
         pink: "#ff8eed",
         "light-gray": "#f0f1f7",
+        white: "#FFFFFF",
       },
       fontFamily: {
         playfair: ["Playfair Display", "serif"],

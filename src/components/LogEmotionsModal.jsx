@@ -8,6 +8,7 @@ function LogEmotionsModal(props) {
   const [anger, setAnger] = useState(5);
   const [errorMessage, setErrorMessage] = useState("");
   const { user } = useContext(UserAuthContext);
+  const fetchEmotionsLastWeek = props.fetchEmotionsLastWeek
 
   if (!props.showModal) {
     return null;
@@ -30,6 +31,7 @@ function LogEmotionsModal(props) {
         setAnger(5)
         setAnxiety(5)
         setSadness(5)
+        fetchEmotionsLastWeek()
       } else {
         setErrorMessage(parsed.message);
       }
