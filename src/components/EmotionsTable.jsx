@@ -42,55 +42,34 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
     
   })
  
+  const days = Object.values(emotionsByDate);
 
-  emotionsByDate.forEach(element => {
-    console.log('element', element)
-   //element.avSadness = element.sadness.reduce((a, b) => a + b) / element.sadness.length
-
+  /// create an avEmotion in each day for each emotions
+  days.map(day => {
+    day.avSadness = Math.round(day.sadness.reduce((a, b) => a + b) / day.sadness.length)
+    day.avAnxiety = Math.round(day.anxiety.reduce((a, b) => a + b) / day.anxiety.length)
+    day.avAnger = Math.round(day.anger.reduce((a, b) => a + b) / day.anger.length)
   })
 
-  console.log('emotions', emotions)
   console.log('emotionsByDate', emotionsByDate)
 
+  // iterate through the emotions array and 
+  let sumSadnessOneWeek = 0
+  let sumAngerOneWeek = 0
+  let sumAnxietyOneWeek = 0
 
-  const averageEmotionsOneWeek = (arr, emotion) => {
+  
+  days.map(day => {
+    sumSadnessOneWeek += day.avSadness
+    sumAnxietyOneWeek += day.avAnxiety
+    sumAngerOneWeek += day.avAnger
+  })
 
-
-    };
-
-  /* The Average Emotion from a Week */
-
-  // Initialize an empty object to store the average emotion values for each date
-
-  const averageEmotionsWeek = (arr, emotion) => {
-    const emotionAvg = {};
-    let total = 0;
-    let countDays = 0;
-
-    // Loop through the array and calculate the sum and count of emotion values for each date
-    arr.forEach((item) => {
-      const date = item.date.slice(0, 10);
-      if (!emotionAvg[date]) {
-        emotionAvg[date] = { sum: 0, count: 0 };
-      }
-
-      emotionAvg[date].sum += item[emotion];
-      emotionAvg[date].count++;
-    });
-
-    // Calculate the average emotion value for each date and store it in the emotionAvg object
-    Object.keys(emotionAvg).forEach((date) => {
-      emotionAvg[date] = emotionAvg[date].sum / emotionAvg[date].count;
-      //countDays is  going to be the amount of days that we have emotions values in a week - Because sometimes people are not going to fill everyday
-      countDays++;
-      //total is going to sum every avg value from each day
-      total += emotionAvg[date];
-    });
-    // Return the average of the emotion  in a week or "x" days that have emotins in a week
-    return Math.round(total / countDays);
-  };
-
-
+  const avSadnessOneWeek = Math.round(sumSadnessOneWeek / days.length)
+  const avAnxietyOneWeek = Math.round(sumAnxietyOneWeek / days.length)
+  const avAngerOneWeek = Math.round(sumAngerOneWeek / days.length)
+  
+  
 
   useEffect(() => {
     fetchEmotionsLastWeek();
@@ -120,7 +99,7 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
           <tr className="gap-10">
             <td>Sadness</td>
             <td>{averageEmotions(emotions, "sadness")}</td>
-            <td>{averageEmotionsWeek(emotions, "sadness")}</td>
+            <td>{avSadnessOneWeek}</td>
 
             <td>
               <a href="*"> Link</a>
@@ -129,7 +108,7 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
           <tr>
             <td>Anxiety</td>
             <td>{averageEmotions(emotions, "anxiety")}</td>
-            <td>{averageEmotionsWeek(emotions, "anxiety")}</td>
+            <td>{avAnxietyOneWeek}</td>
 
             <td>
               <a href="*">Link</a>
@@ -138,7 +117,7 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
           <tr>
             <td>Anger</td>
             <td>{averageEmotions(emotions, "anger")}</td>
-            <td>{averageEmotionsWeek(emotions, "anger")}</td>
+            <td>{avAngerOneWeek}</td>
 
             <td>
               <a href="*">Link</a>
@@ -153,3 +132,36 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
 export default EmotionsTable;
 
 
+
+
+/* The Average Emotion from a Week */
+
+  // Initialize an empty object to store the average emotion values for each date
+
+  /* const averageEmotionsWeek = (arr, emotion) => {
+    const emotionAvg = {};
+    let total = 0;
+    let countDays = 0;
+
+    // Loop through the array and calculate the sum and count of emotion values for each date
+    arr.forEach((item) => {
+      const date = item.date.slice(0, 10);
+      if (!emotionAvg[date]) {
+        emotionAvg[date] = { sum: 0, count: 0 };
+      }
+
+      emotionAvg[date].sum += item[emotion];
+      emotionAvg[date].count++;
+    });
+
+    // Calculate the average emotion value for each date and store it in the emotionAvg object
+    Object.keys(emotionAvg).forEach((date) => {
+      emotionAvg[date] = emotionAvg[date].sum / emotionAvg[date].count;
+      //countDays is  going to be the amount of days that we have emotions values in a week - Because sometimes people are not going to fill everyday
+      countDays++;
+      //total is going to sum every avg value from each day
+      total += emotionAvg[date];
+    });
+    // Return the average of the emotion  in a week or "x" days that have emotins in a week
+    return Math.round(total / countDays);
+  }; */
