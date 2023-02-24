@@ -4,27 +4,8 @@ import { UserAuthContext } from "../contexts/user.auth.context";
 function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
   const { user } = useContext(UserAuthContext);
   // const [emotions, setEmotions] = useState([]);
-  console.log(emotions, "emtions");
   const currentUser = user.user;
-  console.log(currentUser);
 
-  /* const fetchEmotionsLastWeek = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:5005/${currentUser._id}/emotions/past-week`
-      );
-      const parsed = await response.json();
-      console.log("parsed", parsed);
-
-      if (response.status === 200) {
-        setEmotions(parsed);
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }; */
 
   ///// Computing the average of each emotion of one day
 
@@ -44,21 +25,38 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
     }
   };
   //console.log(emotions);
-  /* const averageEmotionsOneWeek = (arr, emotion) => {
-     const emotionsByDate = {date: {
-    sadness: [],
-    anxiety: [],
-    anger: []
-  } }
-  arr.map(element => {
+  const emotionsByDate = {}
+  
+  emotions.forEach(element => {
     if (element.date in emotionsByDate) {
       emotionsByDate[element.date]['sadness'].push(element['sadness'])
+      emotionsByDate[element.date]['anxiety'].push(element['anxiety'])
+      emotionsByDate[element.date]['anger'].push(element['anger'])
     } else {
-      emotionsByDate[element.date] = emotionsByDate['date']
+      emotionsByDate[element.date] = {
+        sadness: [element.sadness],
+        anxiety: [element.anxiety], 
+        anger: [element.anger]
+      }
     }
-    //delete emotionsByDate['date']
+    
   })
-  console.log('emotionsByDate', emotionsByDate)  }; */
+ 
+
+  emotionsByDate.forEach(element => {
+    console.log('element', element)
+   //element.avSadness = element.sadness.reduce((a, b) => a + b) / element.sadness.length
+
+  })
+
+  console.log('emotions', emotions)
+  console.log('emotionsByDate', emotionsByDate)
+
+
+  const averageEmotionsOneWeek = (arr, emotion) => {
+
+
+    };
 
   /* The Average Emotion from a Week */
 
@@ -75,7 +73,6 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
       if (!emotionAvg[date]) {
         emotionAvg[date] = { sum: 0, count: 0 };
       }
-      console.log(item.emotion);
 
       emotionAvg[date].sum += item[emotion];
       emotionAvg[date].count++;
@@ -89,15 +86,11 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
       //total is going to sum every avg value from each day
       total += emotionAvg[date];
     });
-    console.log(emotionAvg, "anxietyAvg", arr);
     // Return the average of the emotion  in a week or "x" days that have emotins in a week
     return Math.round(total / countDays);
   };
 
-  console.log(
-    averageEmotionsWeek(emotions, "anxiety"),
-    "anxiety from the week"
-  );
+
 
   useEffect(() => {
     fetchEmotionsLastWeek();
@@ -118,7 +111,7 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
           <tr className="">
             <th className="pr-2 md:pr-20 pb-10"></th>
             <th className="pr-2 md:px-10">Today</th>
-            <th className="pr-2 md:px-10">4w</th>
+            <th className="pr-2 md:px-10">1w</th>
 
             <th className="pr-2 md:px-10"></th>
           </tr>
@@ -159,46 +152,4 @@ function EmotionsTable({ fetchEmotionsLastWeek, emotions }) {
 
 export default EmotionsTable;
 
-/* const todayDate = new Date().toJSON().slice(0, 10); */
-/* filter to get the emotions of the day */
-/* const todayValues = currentUser.emotions.filter((emotion) => {
-    if (emotion.date === todayDate) {
-      return emotion;
-    } else {
-      return null;
-    }
-  }); */
 
-/*   const today = new Date();
-  let dateLimit = new Date(new Date().setDate(today.getDate() - 28))
-    .toJSON()
-    .slice(0, 10);
-  const todayDate = today.toJSON().slice(0, 10);
-  function getDays(startDate, endDate, steps = 1) {
-    const dateArray = [];
-      let currentDate = new Date(startDate); 
-    console.log(new Date(todayDate) <= new Date(dateLimit));
-    while (new Date(todayDate) === new Date(dateLimit)) {
-      console.log("hello");
-      dateArray.push(new Date(todayDate).toJSON().slice(0, 10));
-      console.log(dateArray);
-      // Use UTC date to prevent problems with time zones and DST
-      todayDate.setUTCDate(todayDate.getUTCDate() + steps);
-    }
-
-    return dateArray;
-  }
-  getDays();
-  const dates = getDays(todayDate, dateLimit);
-  console.log(dates); */
-/* function getEmotions() {
-    const arrAnger = [];
-    for (let i = 0; i < 28; i++) {
-      currentUser.emotions.filter((emotion) => {
-        if (emotion.date === todayDate) {
-          return emotion;
-        }
-      });
-       arrAnger.push(); 
-    }
-  } */
